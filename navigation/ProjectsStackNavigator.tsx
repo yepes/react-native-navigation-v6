@@ -25,35 +25,27 @@ const ProjectDetailCommentsFilterStack =
 
 type ProjectStackNavigatorProps = DrawerNavParamsProps<'Projects'>;
 export const ProjectsStackNavigator = ({}: ProjectStackNavigatorProps) => (
-  <>
-    <View>
-      <Text>Contexto aqui</Text>
-    </View>
-    <ProjectsStack.Navigator>
+  <ProjectsStack.Navigator>
+    <ProjectsStack.Screen name="ProjectsList" component={ProjectsListScreen} />
+    <ProjectsStack.Screen
+      name="ProjectsDetail"
+      component={ProjectDetailTabNavigationScreen}
+    />
+    <ProjectsStack.Group
+      screenOptions={{
+        presentation: 'modal',
+        headerShown: false,
+      }}>
       <ProjectsStack.Screen
-        name="ProjectsList"
-        component={ProjectsListScreen}
+        name="ProjectDetailCommentsFilter"
+        component={ProjectDetailCommentStackNavigator}
       />
       <ProjectsStack.Screen
-        name="ProjectsDetail"
-        component={ProjectDetailTabNavigationScreen}
+        name="ProjectDetailCommentsCreate"
+        component={ProjectsDetailCommentsCreate}
       />
-      <ProjectsStack.Group
-        screenOptions={{
-          presentation: 'modal',
-          headerShown: false,
-        }}>
-        <ProjectsStack.Screen
-          name="ProjectDetailCommentsFilter"
-          component={ProjectDetailCommentStackNavigator}
-        />
-        <ProjectsStack.Screen
-          name="ProjectDetailCommentsCreate"
-          component={ProjectsDetailCommentsCreate}
-        />
-      </ProjectsStack.Group>
-    </ProjectsStack.Navigator>
-  </>
+    </ProjectsStack.Group>
+  </ProjectsStack.Navigator>
 );
 
 type ProjectDetailCommentFilterScreenProps =
