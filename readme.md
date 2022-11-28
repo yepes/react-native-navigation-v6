@@ -9,7 +9,7 @@ Pruebas con react navigation y una navegación medio compleja, con el objetivo d
   - LoggedIn
     - (DrawerNav)
       - Projects
-        - (ProjectsStackNavigator)
+        - (ProjectsStackNavigator) -> ProjectContext
           - Projects List
           - Project Detail
           - Project Detail Comment Filter
@@ -20,3 +20,10 @@ Pruebas con react navigation y una navegación medio compleja, con el objetivo d
       - Sample
       - Another Sample
     
+La idea es que cada tipo de dato (en este caso y como ejemplo proyectos), tenga su contexto para poder compartir datos (generalmente van a ser los filtros)
+
+## Notas
+
+Los headers de las navegaciones se montan y llega un momento que puede haber 4. Se ha dejado así para tener claro en qué navegación estamos.
+
+Proyectos es un elemento tipo normal con listado, detalle, y elementos relacionados.

@@ -12,4 +12,6 @@ const s = StyleSheet.create({
     height: '100%',
   },
 });
-export const Layout = ({children}: LayoutProps) => <View style={s.layout}>{children}</View>;
+export const Layout = ({children}: LayoutProps) => (
+  <View style={s.layout}>{children}</View>
+);

@@ -16,7 +16,7 @@ import {
   ProjectsDetailCommentsFilterSubScreen,
   ProjectsDetailExpensesScreen,
 } from '../screens';
-import {Text, View} from 'react-native';
+import {ProjectContextProvider} from '../context';
 
 const ProjectsStack = createNativeStackNavigator<ProjectsStackParamsList>();
 const ProjectDetailTab = createBottomTabNavigator<ProjectDetailTabList>();
@@ -25,27 +25,32 @@ const ProjectDetailCommentsFilterStack =
 
 type ProjectStackNavigatorProps = DrawerNavParamsProps<'Projects'>;
 export const ProjectsStackNavigator = ({}: ProjectStackNavigatorProps) => (
-  <ProjectsStack.Navigator>
-    <ProjectsStack.Screen name="ProjectsList" component={ProjectsListScreen} />
-    <ProjectsStack.Screen
-      name="ProjectsDetail"
-      component={ProjectDetailTabNavigationScreen}
-    />
-    <ProjectsStack.Group
-      screenOptions={{
-        presentation: 'modal',
-        headerShown: false,
-      }}>
+  <ProjectContextProvider>
+    <ProjectsStack.Navigator>
       <ProjectsStack.Screen
-        name="ProjectDetailCommentsFilter"
-        component={ProjectDetailCommentStackNavigator}
+        name="ProjectsList"
+        component={ProjectsListScreen}
       />
       <ProjectsStack.Screen
-        name="ProjectDetailCommentsCreate"
-        component={ProjectsDetailCommentsCreate}
+        name="ProjectsDetail"
+        component={ProjectDetailTabNavigationScreen}
       />
-    </ProjectsStack.Group>
-  </ProjectsStack.Navigator>
+      <ProjectsStack.Group
+        screenOptions={{
+          presentation: 'modal',
+          headerShown: false,
+        }}>
+        <ProjectsStack.Screen
+          name="ProjectDetailCommentsFilter"
+          component={ProjectDetailCommentStackNavigator}
+        />
+        <ProjectsStack.Screen
+          name="ProjectDetailCommentsCreate"
+          component={ProjectsDetailCommentsCreate}
+        />
+      </ProjectsStack.Group>
+    </ProjectsStack.Navigator>
+  </ProjectContextProvider>
 );
 
 type ProjectDetailCommentFilterScreenProps =
